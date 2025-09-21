@@ -1,0 +1,22 @@
+
+name: Run Telegram Bot
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - run: npm install
+    - name: Run bot
+      run: node index.js
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
